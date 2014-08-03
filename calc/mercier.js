@@ -13,6 +13,8 @@ var distances = ["100m", "200m", "400m", "800m", "1500m", "3000m", "5000m", "100
   var gender2;
   var noConvert = 0;
 
+  var secs = 60*(60*perf_hr + perf_min) + perf0;
+
   if (form.gender[0].checked) {
       gender1 = "men";}
    else {
@@ -27,7 +29,7 @@ var distances = ["100m", "200m", "400m", "800m", "1500m", "3000m", "5000m", "100
       gender2 = "women";}
    }
 
-  if (isNaN(perf0))  {
+  if (isNaN(secs))  {
     alert("Invalid second / metre / point!");
     return;
   }
@@ -45,35 +47,33 @@ var distances = ["100m", "200m", "400m", "800m", "1500m", "3000m", "5000m", "100
       prec1 = "2";}
 
   if (event_name == "100m") {
-    score = 290.52712*(100/perf0) - 1953.2266; }
+    score = 290.52712*(100/secs) - 1953.2266; }
   if (event_name == "200m") {
-    score = 267.75893*(200/perf0) - 1703.6447; }
+    score = 267.75893*(200/secs) - 1703.6447; }
   if (event_name == "400m") {
-    // TODO(kjs): must be in seconds only
-    score = 262.37121*(400/perf0) - 1402.7708; }
-  }
+    score = 262.37121*(400/secs) - 1402.7708; }
   if (event_name == "800m") {
-    score = 302.9089*(800/((60*perf_min)+perf0)) - 1377.5673; }
+    score = 302.9089*(800/secs) - 1377.5673; }
   if (event_name == "1500m") {
-    score = 320.6038*(1500/((60*perf_min)+perf0)) - 1314.0045; }
+    score = 320.6038*(1500/secs) - 1314.0045; }
   if (event_name == "3000m") {
-    score = 331.264214*(3000/((60*perf_min)+perf0)) -1240.294895; }
+    score = 331.264214*(3000/secs) -1240.294895; }
   if (event_name == "5000m") {
-    score = 342.8535*(5000/((60*perf_min)+perf0)) - 1234.1959; }
+    score = 342.8535*(5000/secs) - 1234.1959; }
   if (event_name == "10000m") {
-    score = 349.8535*(10000/((60*perf_min)+perf0)) - 1171.2847; }
+    score = 349.8535*(10000/secs) - 1171.2847; }
 
   if (event_name == "Half Marathon") {
-    score = 366.3739581*(42194.99/2/((((60*perf_hr)+perf_min)*60)+perf0)) -1168.783894; }
+    score = 366.3739581*(42194.99/2/secs) -1168.783894; }
   if (event_name == "Marathon") {
-    score = 384.5408*(42194.99/((((60*perf_hr)+perf_min)*60)+perf0)) - 1161.8021; }
+    score = 384.5408*(42194.99/secs) - 1161.8021; }
 
   if (event_name == "Mile") {
-    score = 321.7731201*(1609.34/((60*perf_min)+perf0)) -1306.285127; }
+    score = 321.7731201*(1609.34/secs) -1306.285127; }
   if (event_name == "2 mile") {
-    score = 333.4505158*(2*1609.34/((60*perf_min)+perf0)) -1241.705275; }
+    score = 333.4505158*(2*1609.34/+secs) -1241.705275; }
   if (event_name == "10 mile") {
-    score = 360.6890152*(10*1609.34/((3600*perf_hr+60*perf_min)+perf0)) -1164.451907; }
+    score = 360.6890152*(10*1609.34/secs) -1164.451907; }
 
   score_temp = score;
   if (gender1 == "women") {
