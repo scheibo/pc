@@ -2,11 +2,11 @@
   "name": "pacecalc",
   "version": "0.0.0",
   "description": "pace calculator",
-  "homepage": "https://github.com/scheibo/pc"
+  "homepage": "https://github.com/scheibo/pc",
   "author": {
     "name": "Kirk Scheibelhut",
     "email": "kjs@scheibo.com",
-    "url": "http://scheibo.com",
+    "url": "http://scheibo.com"
   },
   "repository": "git@github.com/scheibo/pc.git",
   "license": "MIT",
@@ -14,7 +14,7 @@
   "bin": "./bin/pc",
   "keywords": ["pace", "calculator"],
   "dependencies": {
-  }
+  },
   "devDependencies": {
     "browserify": "^9.0.3",
     "coveralls": "^2.7.0",
@@ -22,7 +22,7 @@
     "jshint": "^2.5.0",
     "jshint-stylish": "^1.0.0",
     "mocha": "^2.2.1"
-  }
+  },
   "files": [
     "LICENSE",
     "README.md",
@@ -34,6 +34,6 @@
     "lint": "jshint lib bin index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules && jscs lib bin test index.js",
     "test": "npm run-script lint && mocha --reporter spec --bail --check-leaks test/",
     "coverage": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "browser": "browserify index.js > browser.js",
+    "browser": "browserify index.js > browser.js"
   }
 }
