@@ -7,19 +7,19 @@
 ## Install
 
 ```sh
-$ npm install --save pc
+$ npm install --save pacecalc
 ```
 
 ## Usage
 
 ```js
-var pc = require('pc');
+var pc = require('pacecalc');
 
 // TODO(kjs) pc.calc?
 ```
 
 ```sh
-$ npm install --global pc
+$ npm install --global pacecalc
 $ pc --help
 ```
 
@@ -33,8 +33,8 @@ $ npm run browser
 MIT © [Kirk Scheibelhut](http://scheibo.com)
 
 
-[npm-image]: https://badge.fury.io/js/pc.svg
-[npm-url]: https://npmjs.org/package/pc
+[npm-image]: https://badge.fury.io/js/pacecalc.svg
+[npm-url]: https://npmjs.org/package/pacecalc
 [travis-image]: https://travis-ci.org/scheibo/pc.svg?branch=master
 [travis-url]: https://travis-ci.org/scheibo/pc
 [daviddm-image]: https://david-dm.org/scheibo/pc.svg?theme=shields.io
