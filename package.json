@@ -33,7 +33,8 @@
   ],
   "scripts": {
     "lint": "jshint lib bin test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules && jscs lib bin test index.js",
-    "test": "npm run-script lint && mocha --reporter spec --bail --check-leaks test/",
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "testall": "npm run-script lint && npm run-script test",
     "coverage": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "browser": "browserify index.js > browser.js"
   }
