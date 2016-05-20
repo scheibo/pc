@@ -9,12 +9,13 @@ describe('pc.Time', () => {
     assert.equal(new Time(45296.789).toString(), '12:34:56.789');
 
     assert.equal(new Time(45296.789).toString(Format.COLONS), '12:34:56.789');
-    assert.equal(new Time(45296.789).toString(Format.LETTERS), '12h34m56.789s');
-    assert.equal(new Time(45296.789).toString(Format.WORDS),
-                 '12 hrs 34 mins 56.789 secs');
+    assert.equal(new Time(45296.78).toString(Format.LETTERS), '12h34m56.78s');
+    assert.equal(new Time(45296.7).toString(Format.WORDS),
+                 '12hrs 34mins 56.7secs');
     assert.equal(new Time(45296.789).toString(Format.QUOTES), '754\'56.789"');
 
-    assert.equal(new Time(45296.789, Format.QUOTES).toString(), '12:34:56.789');
+    assert.equal(new Time(45296.789, Format.LETTERS).toString(),
+                 '12h34m56.789s');
     assert.equal(new Time(45296.789, Format.QUOTES).toString(Format.LETTERS),
                  '12h34m56.789s');
   });
