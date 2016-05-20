@@ -1,7 +1,7 @@
-'use strict';
+'use strict'; /* eslint-env mocha */
 var assert = require('assert');
 var pc = require('../');
-var Distance = pc.Time;
+var Speed = pc.Speed;
 
 describe('pc.Speed', () => {
 

@@ -4,15 +4,17 @@
 
 var pc = require('../');
 
-// TODO(kjs): actually do stuff.
+var main = () => {
+  // TODO(kjs): actually do stuff.
+};
 
 /** Expose / Entry Point */
-if (!module.parent) {
+if (module.parent) {
+  module.exports = main;
+} else {
   process.title = 'pc';
   main(process.argv.slice(), function(err, code) {
     if (err) throw err;
     return process.exit(code || 0);
   });
-} else {
-  module.exports = main;
 }

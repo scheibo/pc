@@ -1,0 +1,15 @@
+{
+  "extends": [ "standard", "google" ],
+  "plugins" : [
+    "google-camelcase"
+  ],
+  "rules": {
+    "no-warning-comments": "off",
+    "camelcase": "off",
+    "google-camelcase/google-camelcase": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

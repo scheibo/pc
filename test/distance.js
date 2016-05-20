@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; /* eslint-env mocha */
 var assert = require('assert');
 var pc = require('../');
 var Distance = pc.Distance;
