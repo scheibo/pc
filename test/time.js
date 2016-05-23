@@ -17,7 +17,7 @@ describe('pc.Time', () => {
     assert.equal(new Time(45296.789, Format.QUOTES).toString(Format.LETTERS),
                  '12h34m56.789s');
   });
-  it.skip('fromString("HH:MM:SS.xxx")', () => {
+  it('fromString("HH:MM:SS.xxx")', () => {
     assert.equal(Time.fromString('12:34:56.789').format, Format.COLONS);
     // TODO(kjs): state
     // assert.equal(Time.fromString('12:34:56.789 12h34m', state));
@@ -26,35 +26,36 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12:34:56.78').seconds, 45296.78);
     assert.equal(Time.fromString('12:34:56.7').seconds, 45296.7);
     assert.equal(Time.fromString('12:34:56').seconds, 45296);
-    assert.equal(Time.fromString('12:34:5').seconds, 45290);
+    assert.equal(Time.fromString('12:34:5').seconds, 45245);
     assert.equal(Time.fromString('12:34:').seconds, 45240);
     assert.equal(Time.fromString('12:34').seconds, 754);
-    assert.equal(Time.fromString('12:3').seconds, 750);
+    assert.equal(Time.fromString('12:0:34').seconds, 43234);
+    assert.equal(Time.fromString('12:3').seconds, 723);
     assert.equal(Time.fromString('2:34:56.789').seconds, 9296.789);
     assert.equal(Time.fromString(':34:56.789').seconds, 2096.789);
     assert.equal(Time.fromString('34:56.789').seconds, 2096.789);
     assert.equal(Time.fromString('4:56.789').seconds, 296.789);
     assert.equal(Time.fromString(':56.789').seconds, 56.789);
-    assert.equal(Time.fromString('56.789').seconds, 56.789);
-    assert.equal(Time.fromString('56.78').seconds, 56.789);
-    assert.equal(Time.fromString('56.7').seconds, 56.7);
-    assert.equal(Time.fromString('56.').seconds, 56);
-    assert.equal(Time.fromString('56').seconds, 56);
-    assert.equal(Time.fromString('6').seconds, 6);
+    assert.equal(Time.fromString('56.789'), undefined);
+    assert.equal(Time.fromString(':56.78').seconds, 56.78);
+    assert.equal(Time.fromString(':56.7').seconds, 56.7);
+    assert.equal(Time.fromString(':56.').seconds, 56);
+    assert.equal(Time.fromString(':56').seconds, 56);
+    assert.equal(Time.fromString(':6').seconds, 6);
     assert.equal(Time.fromString('0:34:56.789').seconds, 2096.789);
     assert.equal(Time.fromString('0:0:0.789').seconds, 0.789);
     assert.equal(Time.fromString('100:34:56').seconds, 362096);
     assert.equal(Time.fromString('59:56').seconds, 3596);
     assert.equal(Time.fromString('60:34').seconds, 3634);
     assert.equal(Time.fromString('60:34.567').seconds, 3634.567);
-    assert.equal(Time.fromString('2368.345').seconds, 2368.345);
+    assert.equal(Time.fromString(':2368.345').seconds, 2368.345);
     assert.equal(Time.fromString('12:345.567').seconds, 1065.567);
-    assert.equal(Time.fromString('12:345:61').seconds, 45301);
+    assert.equal(Time.fromString('12:345:61').seconds, 63961);
     assert.equal(Time.fromString(' 12:34:56.789').seconds, 45296.789);
     assert.equal(Time.fromString('12:34:56.789 ').seconds, 45296.789);
     assert.equal(Time.fromString('x12:34:56.789'), undefined);
-    assert.equal(Time.fromString('12:34:56.789x'), undefined);
-    assert.equal(Time.fromString('12:34..567'), undefined);
+    assert.equal(Time.fromString('12:34:56.789x').seconds, 45296.789);
+    assert.equal(Time.fromString('12:34..567').seconds, 754);
   });
   it('fromString("HHhMMmSS.xxxs")', () => {
     assert.equal(Time.fromString('12h34m56.789s').format, Format.LETTERS);
