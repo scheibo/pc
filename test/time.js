@@ -116,7 +116,67 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12\',34.567"').seconds, 720);
     assert.equal(Time.fromString('12\'"').seconds, 720);
   });
-  it.skip('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
+  it.only('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
+    assert.equal(
+        Time.fromString('12 hours, 34 minutes and 56.789 seconds').format,
+        Format.WORDS);
+    // TODO(kjs): state
+    assert.equal(
+        Time.fromString('12 hours, 34 minutes and 56.789 seconds').seconds,
+        45296.789);
+    assert.equal(
+        Time.fromString('12 hrs, 34 mins and 56.789 secs').seconds,
+        45296.789);
+    assert.equal(
+        Time.fromString('12 hour\'s and 34 min\'s , 56.789 second\'s').seconds,
+        45296.789);
+    assert.equal(
+        Time.fromString('12hours and34mins ,56.789secs').seconds,
+        45296.789);
+    assert.equal(Time.fromString('12hr34min56.78sec').seconds, 45296.78);
+    assert.equal(
+        Time.fromString('12hours 34 minutes and 56.7 secs').seconds,
+        45296.7);
+    assert.equal(
+        Time.fromString('12 hours and 34 minutes and 56 seconds').seconds,
+        45296);
+    assert.equal(Time.fromString('12hours 34minutes 5').seconds, 45240);
+    assert.equal(Time.fromString('12hrs,34minutes').seconds, 45240);
+    assert.equal(Time.fromString('12 hours and 34').seconds, 43200);
+    assert.equal(Time.fromString('12 hours and 3 mins').seconds, 43380);
+    assert.equal(
+        Time.fromString('2hours 34minutes ,56.789 secs').seconds,
+        9296.789);
+    assert.equal(Time.fromString('34 mins 56.789').seconds, 2040);
+    assert.equal(Time.fromString('4 mins 56.789seconds').seconds, 296.789);
+    assert.equal(Time.fromString('56.789seconds').seconds, 56.789);
+    assert.equal(Time.fromString('56.789'), undefined);
+    assert.equal(Time.fromString('56.78secs').seconds, 56.78);
+    assert.equal(Time.fromString('56.7 sec\'s').seconds, 56.7);
+    assert.equal(Time.fromString('56min\'s').sconds, 3360);
+    assert.equal(Time.fromString('56secs').seconds, 56);
+    assert.equal(Time.fromString('6'), undefined);
+    assert.equal(
+        Time.fromString('0 hours 34mins6.789 second\'s').seconds, 2046.789);
+    assert.equal(
+        Time.fromString('0 hours 0 minutes and 0.789 seconds').seconds, 0.789);
+    assert.equal(
+        Time.fromString('100hrs34mins56secs').seconds, 362096);
+    assert.equal(Time.fromString('59 minutes and 56 seconds').seconds, 3596);
+    assert.equal(Time.fromString('60hrs, 34mins').seconds, 218040);
+    assert.equal(Time.fromString('60 minutes34 seconds').seconds, 3634);
+    assert.equal(Time.fromString('2368.345'), undefined); // no s!
+    assert.equal(Time.fromString('12min\'s 345.567secs').seconds, 1065.567);
+    assert.equal(Time.fromString('12 hours 345 mins 59 secs').seconds, 63959);
+    assert.equal(Time.fromString(' 12 hr 34 min 56.789sec').seconds, 45296.789);
+    assert.equal(Time.fromString('12hr34min56.789sec ').seconds, 45296.789);
+    assert.equal(
+        Time.fromString('x12 hours 34 minutes 56.789 seconds'), undefined);
+    assert.equal(
+        Time.fromString('12hours 34 minutes 56.789 secondsx').seconds,
+        45296.789);
+    assert.equal(Time.fromString('12hoursminutes').seconds, 43200);
+    assert.equal(Time.fromString('12minutes34..567seconds').seconds, 720);
   });
   it('fromString("foo")', () => {
     assert.equal(Time.fromString(''), undefined);
