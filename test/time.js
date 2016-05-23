@@ -94,12 +94,12 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12hm').seconds, 43200);
     assert.equal(Time.fromString('12m34..567s').seconds, 720);
   });
-  it.skip('fromString("MM\'SS.xxx"")', () => {
+  it('fromString("MM\'SS.xxx"")', () => {
     assert.equal(Time.fromString('12\'34.567"').format, Format.QUOTES);
     // TODO(kjs): state
     assert.equal(Time.fromString('12\'34.567"').seconds, 754.567);
     assert.equal(Time.fromString('12 \' 34.567 "').seconds, 754.567);
-    assert.equal(Time.fromString('12\'3"').seconds, 750);
+    assert.equal(Time.fromString('12\'3"').seconds, 723);
     assert.equal(Time.fromString('154\'56.789"').seconds, 9296.789);
     assert.equal(Time.fromString('56\'').seconds, 3360);
     assert.equal(Time.fromString('6"').seconds, 6);
@@ -108,12 +108,12 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString(' 12\'34.567"').seconds, 754.567);
     assert.equal(Time.fromString('12\'34.567" ').seconds, 754.567);
     assert.equal(Time.fromString('x12\'34.567"'), undefined);
-    assert.equal(Time.fromString('12\'34.567"x'), undefined);
+    assert.equal(Time.fromString('12\'34.567"x').seconds, 754.567);
     assert.equal(Time.fromString('12" 34.567\'').seconds, 12);
-    assert.equal(Time.fromString('12"34.567\''), undefined);
-    assert.equal(Time.fromString('12\'34..567"'), undefined);
-    assert.equal(Time.fromString('12\',34.567"'), undefined);
-    assert.equal(Time.fromString('12\'"'), undefined);
+    assert.equal(Time.fromString('12"34.567\'').seconds, 12);
+    assert.equal(Time.fromString('12\'34..567"').seconds, 720);
+    assert.equal(Time.fromString('12\',34.567"').seconds, 720);
+    assert.equal(Time.fromString('12\'"').seconds, 720);
   });
   it.skip('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
   });
