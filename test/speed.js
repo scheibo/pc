@@ -3,6 +3,6 @@ var assert = require('assert');
 var pc = require('../');
 var Speed = pc.Speed;
 
-describe('pc.Speed', () => {
+suite('pc.Speed', () => {
 
 });

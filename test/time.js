@@ -4,8 +4,8 @@ var pc = require('../');
 var Time = pc.Time;
 var Format = pc.Time.Format;
 
-describe('pc.Time', () => {
-  it('toString()', () => {
+suite('pc.Time', () => {
+  test('toString()', () => {
     assert.equal(new Time(45296.789).toString(), '12:34:56.789');
     assert.equal(new Time(45296.789).toString(Format.COLONS), '12:34:56.789');
     assert.equal(new Time(45296.78).toString(Format.LETTERS), '12h34m56.78s');
@@ -17,7 +17,7 @@ describe('pc.Time', () => {
     assert.equal(new Time(45296.789, Format.QUOTES).toString(Format.LETTERS),
                  '12h34m56.789s');
   });
-  it('fromString("HH:MM:SS.xxx")', () => {
+  test('fromString("HH:MM:SS.xxx")', () => {
     assert.equal(Time.fromString('12:34:56.789').format, Format.COLONS);
     // TODO(kjs): state
     // assert.equal(Time.fromString('12:34:56.789 12h34m', state));
@@ -57,7 +57,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12:34:56.789x').seconds, 45296.789);
     assert.equal(Time.fromString('12:34..567').seconds, 754);
   });
-  it('fromString("HHhMMmSS.xxxs")', () => {
+  test('fromString("HHhMMmSS.xxxs")', () => {
     assert.equal(Time.fromString('12h34m56.789s').format, Format.LETTERS);
     // TODO(kjs): state
     assert.equal(Time.fromString('12h34m56.789s').seconds, 45296.789);
@@ -95,7 +95,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12hm').seconds, 43200);
     assert.equal(Time.fromString('12m34..567s').seconds, 720);
   });
-  it('fromString("MM\'SS.xxx"")', () => {
+  test('fromString("MM\'SS.xxx"")', () => {
     assert.equal(Time.fromString('12\'34.567"').format, Format.QUOTES);
     // TODO(kjs): state
     assert.equal(Time.fromString('12\'34.567"').seconds, 754.567);
@@ -116,7 +116,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12\',34.567"').seconds, 720);
     assert.equal(Time.fromString('12\'"').seconds, 720);
   });
-  it.only('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
+  test('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
     assert.equal(
         Time.fromString('12 hours, 34 minutes and 56.789 seconds').format,
         Format.WORDS);
@@ -153,7 +153,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('56.789'), undefined);
     assert.equal(Time.fromString('56.78secs').seconds, 56.78);
     assert.equal(Time.fromString('56.7 sec\'s').seconds, 56.7);
-    assert.equal(Time.fromString('56min\'s').sconds, 3360);
+    assert.equal(Time.fromString('56min\'s').seconds, 3360);
     assert.equal(Time.fromString('56secs').seconds, 56);
     assert.equal(Time.fromString('6'), undefined);
     assert.equal(
@@ -165,7 +165,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('59 minutes and 56 seconds').seconds, 3596);
     assert.equal(Time.fromString('60hrs, 34mins').seconds, 218040);
     assert.equal(Time.fromString('60 minutes34 seconds').seconds, 3634);
-    assert.equal(Time.fromString('2368.345'), undefined); // no s!
+    assert.equal(Time.fromString('2368.345'), undefined);
     assert.equal(Time.fromString('12min\'s 345.567secs').seconds, 1065.567);
     assert.equal(Time.fromString('12 hours 345 mins 59 secs').seconds, 63959);
     assert.equal(Time.fromString(' 12 hr 34 min 56.789sec').seconds, 45296.789);
@@ -178,7 +178,7 @@ describe('pc.Time', () => {
     assert.equal(Time.fromString('12hoursminutes').seconds, 43200);
     assert.equal(Time.fromString('12minutes34..567seconds').seconds, 720);
   });
-  it('fromString("foo")', () => {
+  test('fromString("foo")', () => {
     assert.equal(Time.fromString(''), undefined);
     assert.equal(Time.fromString('foo'), undefined);
   });
