@@ -3,6 +3,9 @@ var assert = require('assert');
 var pc = require('../');
 var Distance = pc.Distance;
 
-describe('pc.Distance', () => {
-
+suite('pc.Distance', () => {
+  test('toString()', () => {
+  });
+  test('fromString()', () => {
+  });
 });
