@@ -61,6 +61,7 @@ suite('pc.Time', () => {
     assert.equal(Time.fromString('12h34m56.789s').format, Format.LETTERS);
     // TODO(kjs): state
     assert.equal(Time.fromString('12h34m56.789s').seconds, 45296.789);
+    assert.equal(Time.fromString('12H34M56.789S').seconds, 45296.789);
     assert.equal(Time.fromString('12 h 34 m 56.789 s').seconds, 45296.789);
     assert.equal(Time.fromString('12h34m56.78s').seconds, 45296.78);
     assert.equal(Time.fromString('12h34m56.7s').seconds, 45296.7);
@@ -123,6 +124,9 @@ suite('pc.Time', () => {
     // TODO(kjs): state
     assert.equal(
         Time.fromString('12 hours, 34 minutes and 56.789 seconds').seconds,
+        45296.789);
+    assert.equal(
+        Time.fromString('12 Hours, 34 MINUTES AnD 56.789 SEConDs').seconds,
         45296.789);
     assert.equal(
         Time.fromString('12 hrs, 34 mins and 56.789 secs').seconds,
