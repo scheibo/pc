@@ -3,6 +3,7 @@ var assert = require('assert');
 var pc = require('../');
 var Distance = pc.Distance;
 var Format = pc.Distance.Format;
+var System = pc.System;
 
 suite('pc.Distance', () => {
   test('toString()', () => {
@@ -27,14 +28,14 @@ suite('pc.Distance', () => {
     assert.equal(new Distance(42194.988/2).toString(Format.LONG),
                  'Half Marathon'); 
 
-    assert.equal(new Distance(1609.344).toString(Format.SHORT, System.IMPERIAL), '1 mi'); 
-    assert.equal(new Distance(1609.344).toString(Format.LONG, System.IMPERIAL), '1 mile'); 
-    assert.equal(new Distance(3*1609.344).toString(Format.SHORT, System.IMPERIAL), '3 mi'); 
+    assert.equal(new Distance(1609.344).toString(Format.SHORT, System.IMPERIAL), 'Mile'); 
+    assert.equal(new Distance(1609.344).toString(Format.LONG, System.IMPERIAL), 'Mile'); 
+    assert.equal(new Distance(3*1609.344).toString(Format.SHORT, System.IMPERIAL), '3mi'); 
     assert.equal(new Distance(3*1609.344).toString(Format.LONG, System.IMPERIAL), '3 miles'); 
     assert.equal(new Distance(1609.344/2).toString(Format.SHORT, System.IMPERIAL), '880y'); 
     assert.equal(new Distance(1609.344/2).toString(Format.LONG, System.IMPERIAL), '880 yards'); 
-    assert.equal(new Distance(1609.344/2).toString(Format.SHORT, System.IMPERIAL), '440y'); 
-    assert.equal(new Distance(1609.344/2).toString(Format.LONG, System.IMPERIAL), '440 yards'); 
+    assert.equal(new Distance(1609.344/4).toString(Format.SHORT, System.IMPERIAL), '440y'); 
+    assert.equal(new Distance(1609.344/4).toString(Format.LONG, System.IMPERIAL), '440 yards'); 
     assert.equal(new Distance(1609.344/3).toString(Format.SHORT, System.IMPERIAL), '586.667y'); 
     assert.equal(new Distance(1.7*1609.344).toString(Format.SHORT, System.IMPERIAL), '1.7mi'); 
   });
