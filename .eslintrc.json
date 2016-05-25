@@ -6,7 +6,9 @@
   "rules": {
     "no-warning-comments": "off",
     "camelcase": "off",
-    "google-camelcase/google-camelcase": "error"
+    "google-camelcase/google-camelcase": "error",
+    "no-lonely-if": "warn",
+    "no-else-return": "warn"
   },
   "env": {
     "browser": true,
