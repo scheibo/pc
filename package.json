@@ -35,7 +35,7 @@
   "scripts": {
     "lint": "eslint lib/** bin/** test/** index.js",
     "test": "mocha --ui tdd --reporter spec --check-leaks test/",
-    "testall": "npm run-script lint && npm run-script test",
+    "testall": "npm run-script lint && npm run-script coverage",
     "coverage": "istanbul cover _mocha --report lcovonly -- --ui tdd && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "coverage-html": "istanbul cover _mocha -- --ui tdd && google-chrome ./coverage/lcov-report/index.html",
     "browser": "browserify index.js > browser.js"

@@ -8,7 +8,8 @@
     "camelcase": "off",
     "google-camelcase/google-camelcase": "error",
     "no-lonely-if": "warn",
-    "no-else-return": "warn"
+    "no-else-return": "warn",
+    "no-unused-vars": "warn"
   },
   "env": {
     "browser": true,
