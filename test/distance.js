@@ -17,7 +17,8 @@ suite('pc.Distance', () => {
     assert.equal(new Distance(1).toString(), '1m');
     assert.equal(new Distance(1, LONG).toString(), '1 metre');
     assert.equal(new Distance(MILE / 2, SHORT, IMPERIAL).toString(), '880y');
-
+  });
+  test('toString() => "km"', () => {
     assert.equal(new Distance(1).toString(SHORT), '1m');
     assert.equal(new Distance(1).toString(LONG), '1 metre');
     assert.equal(new Distance(999).toString(SHORT), '999m');
@@ -25,6 +26,7 @@ suite('pc.Distance', () => {
     assert.equal(new Distance(1499).toString(SHORT), '1.499km');
     assert.equal(new Distance(1499).toString(LONG), '1.499 kilometres');
     assert.equal(new Distance(1499.9).toString(SHORT), '1.5km');
+    assert.equal(new Distance(999.9999).toString(SHORT), '1000m');
     assert.equal(new Distance(1499.9).toString(LONG), '1.5 kilometres');
     assert.equal(new Distance(1500).toString(SHORT), '1500m');
     assert.equal(new Distance(1500).toString(LONG), '1500m');
@@ -35,7 +37,8 @@ suite('pc.Distance', () => {
     assert.equal(new Distance(MARATHON).toString(LONG), 'Marathon');
     assert.equal(new Distance(MARATHON / 2).toString(SHORT), 'Half Marathon');
     assert.equal(new Distance(MARATHON / 2).toString(LONG), 'Half Marathon');
-
+  });
+  test('toString() => "mi"', () => {
     assert.equal(new Distance(MILE).toString(SHORT, IMPERIAL), 'Mile');
     assert.equal(new Distance(MILE).toString(LONG, IMPERIAL), 'Mile');
     assert.equal(new Distance(3 * MILE).toString(SHORT, IMPERIAL), '3mi');
@@ -52,7 +55,10 @@ suite('pc.Distance', () => {
     assert.equal(Distance.fromString('HALF MARATHON').metres, MARATHON / 2);
     assert.equal(Distance.fromString('Marathon').metres, MARATHON);
     assert.equal(Distance.fromString('marathon').metres, MARATHON);
-
+    assert.equal(Distance.fromString(''), undefined);
+    assert.equal(Distance.fromString('foo'), undefined);
+  });
+  test('fromString("km")', () => {
     assert.equal(Distance.fromString('4000 m').metres, 4000);
     assert.equal(Distance.fromString('4000 metres').metres, 4000);
     assert.equal(Distance.fromString('4000 Metre').metres, 4000);
@@ -66,11 +72,8 @@ suite('pc.Distance', () => {
     assert.equal(Distance.fromString('4 KiloMeters').metres, 4000);
     assert.equal(Distance.fromString('4 kiloMETRE').metres, 4000);
     assert.equal(Distance.fromString('4 kilometre\'s').metres, 4000);
-
-    // TODO imperial and format/short or long
   });
-  test('fromString("foo")', () => {
-    assert.equal(Distance.fromString(''), undefined);
-    assert.equal(Distance.fromString('foo'), undefined);
+  test.skip('fromString("mi")', () => {
+    // TODO imperial and format/short or long
   });
 });
