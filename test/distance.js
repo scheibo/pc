@@ -59,6 +59,8 @@ suite('pc.Distance', () => {
     assert.equal(Distance.fromString('foo'), undefined);
   });
   test('fromString("km")', () => {
+    assert.equal(Distance.fromString('4000 m').system, System.METRIC);
+    assert.equal(Distance.fromString('4000 kilometres').format, LONG);
     assert.equal(Distance.fromString('4000 m').metres, 4000);
     assert.equal(Distance.fromString('4000 metres').metres, 4000);
     assert.equal(Distance.fromString('4000 Metre').metres, 4000);
@@ -74,6 +76,15 @@ suite('pc.Distance', () => {
     assert.equal(Distance.fromString('4 kilometre\'s').metres, 4000);
   });
   test.skip('fromString("mi")', () => {
-    // TODO imperial and format/short or long
+     // TODO imperial
+  });
+  test('EVENTS', () => {
+    var events = [100, 200, 400, 800, 1500, MILE, 3000, 2 * MILE, 5000,
+                  5 * MILE, 10000, 10 * MILE, MARATHON / 2, MARATHON];
+    var i = 0;
+    for (var e of Distance.EVENTS.values()) {
+      assert.equal(e.distance.metres, events[i]);
+      i++;
+    }
   });
 });
