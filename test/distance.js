@@ -60,8 +60,10 @@ suite('pc.Distance', () => {
   });
   test('fromString("km")', () => {
     assert.equal(Distance.fromString('4000 m').system, System.METRIC);
+    assert.equal(Distance.fromString('4000 m').format, SHORT);
+    assert.equal(Distance.fromString('4000 kilometres').system, System.METRIC);
     assert.equal(Distance.fromString('4000 kilometres').format, LONG);
-    assert.equal(Distance.fromString('4000 m').metres, 4000);
+    assert.equal(Distance.fromString('4000 M').metres, 4000);
     assert.equal(Distance.fromString('4000 metres').metres, 4000);
     assert.equal(Distance.fromString('4000 Metre').metres, 4000);
     assert.equal(Distance.fromString('4000 metre\'s').metres, 4000);
@@ -75,8 +77,17 @@ suite('pc.Distance', () => {
     assert.equal(Distance.fromString('4 kiloMETRE').metres, 4000);
     assert.equal(Distance.fromString('4 kilometre\'s').metres, 4000);
   });
-  test.skip('fromString("mi")', () => {
-     // TODO imperial
+  test('fromString("mi")', () => {
+    assert.equal(Distance.fromString('3 mi.\'s').system, IMPERIAL);
+    assert.equal(Distance.fromString('3 mi.\'s').format, SHORT);
+    assert.equal(Distance.fromString('1320 yds').system, IMPERIAL);
+    assert.equal(Distance.fromString('1320 yds').format, SHORT);
+    assert.equal(Distance.fromString('3 mi.').metres, 3 * MILE);
+    assert.equal(Distance.fromString('1320yd').metres, 0.75 * MILE);
+    assert.equal(Distance.fromString('5 MILES').metres, 5 * MILE);
+    assert.equal(Distance.fromString('2mile').metres, 2 * MILE);
+    assert.equal(Distance.fromString('440 Yards').metres, MILE / 4);
+    assert.equal(Distance.fromString('1760 YS').metres, MILE);
   });
   test('EVENTS', () => {
     var events = [100, 200, 400, 800, 1500, MILE, 3000, 2 * MILE, 5000,
