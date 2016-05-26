@@ -1,7 +1,7 @@
 # pc
 > pace calculator
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-image]][daviddm-url] ![pre-alpha](http://img.shields.io/badge/status-pre--alpha-lightgrey.svg)
+[![pre-alpha](http://img.shields.io/badge/status-pre--alpha-lightgrey.svg) [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] ![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] 
 
 ## Install
 
