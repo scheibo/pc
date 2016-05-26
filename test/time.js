@@ -6,16 +6,42 @@ var Format = pc.Time.Format;
 
 suite('pc.Time', () => {
   test('toString()', () => {
+    assert.equal(new Time(45296.789).toString(1), undefined);
+  });
+  test('toString() => "HH:MM:SS.xxx"', () => {
     assert.equal(new Time(45296.789).toString(), '12:34:56.789');
     assert.equal(new Time(45296.789).toString(Format.COLONS), '12:34:56.789');
+    assert.equal(new Time(4141).toString(Format.COLONS), '1:09:01');
+    assert.equal(new Time(541.1234).toString(Format.COLONS), '9:01.123');
+    assert.equal(new Time(551.1234).toString(Format.COLONS), '9:11.123');
+    assert.equal(new Time(5).toString(Format.COLONS), '00:05');
+    assert.equal(new Time(11).toString(Format.COLONS), '00:11');
+  });
+  test('toString() => "HHhMMmSS.xxxs"', () => {
     assert.equal(new Time(45296.78).toString(Format.LETTERS), '12h34m56.78s');
-    assert.equal(new Time(45296.7).toString(Format.WORDS),
-                 '12hrs 34mins 56.7secs');
-    assert.equal(new Time(45296.789).toString(Format.QUOTES), '754\'56.789"');
+    assert.equal(new Time(3601).toString(Format.LETTERS), '1h1s');
+    assert.equal(new Time(60).toString(Format.LETTERS), '1m');
     assert.equal(new Time(45296.789, Format.LETTERS).toString(),
                  '12h34m56.789s');
     assert.equal(new Time(45296.789, Format.QUOTES).toString(Format.LETTERS),
                  '12h34m56.789s');
+  });
+  test('toString() => "MM\'SS.xxx""', () => {
+    assert.equal(new Time(45296.789).toString(Format.QUOTES), '754\'56.789"');
+    assert.equal(new Time(120).toString(Format.QUOTES), '2\'');
+    assert.equal(new Time(12).toString(Format.QUOTES), '12"');
+  });
+  test('toString() => "HH hrs, MM mins SS.xxx secs"', () => {
+    assert.equal(new Time(45296.7).toString(Format.WORDS),
+                 '12 hrs 34 mins 56.7 secs');
+    assert.equal(new Time(3601).toString(Format.WORDS), '1 hr 1 sec');
+    assert.equal(new Time(60).toString(Format.WORDS), '1 min');
+    assert.equal(new Time(7201.01).toString(Format.WORDS), '2 hrs 1.01 secs');
+    assert.equal(new Time(120).toString(Format.WORDS), '2 mins');
+  });
+  test('fromString()', () => {
+    assert.equal(Time.fromString(''), undefined);
+    assert.equal(Time.fromString('foo'), undefined);
   });
   test('fromString("HH:MM:SS.xxx")', () => {
     assert.equal(Time.fromString('12:34:56.789').format, Format.COLONS);
@@ -117,7 +143,7 @@ suite('pc.Time', () => {
     assert.equal(Time.fromString('12\',34.567"').seconds, 720);
     assert.equal(Time.fromString('12\'"').seconds, 720);
   });
-  test('fromString("HH hours, MM minutes and SS.xxx seconds")', () => {
+  test('fromString("HH hrs MM mins SS.xxx secs")', () => {
     assert.equal(
         Time.fromString('12 hours, 34 minutes and 56.789 seconds').format,
         Format.WORDS);
@@ -181,9 +207,5 @@ suite('pc.Time', () => {
         45296.789);
     assert.equal(Time.fromString('12hoursminutes').seconds, 43200);
     assert.equal(Time.fromString('12minutes34..567seconds').seconds, 720);
-  });
-  test('fromString("foo")', () => {
-    assert.equal(Time.fromString(''), undefined);
-    assert.equal(Time.fromString('foo'), undefined);
   });
 });
