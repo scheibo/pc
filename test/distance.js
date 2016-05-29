@@ -3,7 +3,7 @@ var assert = require('assert');
 var pc = require('../');
 var Distance = pc.Distance;
 var Format = pc.Distance.Format;
-var System = pc.System;
+var System = pc.Distance.System;
 
 const MARATHON = 42194.988;
 const MILE = 1609.344;
