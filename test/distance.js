@@ -5,8 +5,8 @@ var Distance = pc.Distance;
 var Format = pc.Distance.Format;
 var System = pc.Distance.System;
 
-const MARATHON = 42194.988;
-const MILE = 1609.344;
+const MARATHON = Distance.MARATHON;
+const MILE = Distance.MILE;
 
 const SHORT = Format.SHORT;
 const LONG = Format.LONG;
